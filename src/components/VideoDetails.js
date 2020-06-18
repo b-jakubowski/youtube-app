@@ -10,12 +10,12 @@ const Subtitle = styled.p`
   padding: 0.5rem;
 `;
 
-const VideoDetails = ({ title, description, channelName }) => {
+const VideoDetails = ({ title, description, channelTitle }) => {
   return (
     <div>
       <Title>{title}</Title>
+      <Subtitle>{channelTitle}</Subtitle>
       <Subtitle>{description}</Subtitle>
-      <Subtitle>{channelName}</Subtitle>
     </div>
   );
 };
@@ -23,7 +23,7 @@ const VideoDetails = ({ title, description, channelName }) => {
 VideoDetails.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  channelName: PropTypes.string
+  channelTitle: PropTypes.string
 };
 
 export default VideoDetails;

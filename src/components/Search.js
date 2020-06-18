@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Input = styled.input`
   background-color: white;
@@ -7,12 +8,12 @@ const Input = styled.input`
   padding: 0.3rem;
 `;
 
-const Search = () => {
+const Search = ({ setSearchValue }) => {
   return (
     <header>
       <form>
         <Input
-          onChange={e => console.log(e.target.value)}
+          onChange={e => setSearchValue(e.target.value)}
           type="text"
           name="name"
           placeholder="Search"
@@ -20,6 +21,10 @@ const Search = () => {
       </form>
     </header>
   );
+};
+
+Search.propTypes = {
+  setSearchValue: PropTypes.func
 };
 
 export default Search;
