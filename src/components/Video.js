@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 
 const Container = styled.div`
   display: flex;
-  height: 23rem;
+  height: 25rem;
   padding: 1rem;
 `;
 const VideoContainer = styled.div`
