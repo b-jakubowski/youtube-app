@@ -1,7 +1,7 @@
 const searchPart = 'snippet';
 const searchMaxResults = 1;
 const contentType = 'video';
-const apiKey = 'AIzaSyDw_2NUI1_2CXmXZZmLnl02vR1Zqj_ZcHY';
+const apiKey = process.env.REACT_APP_API_KEY;
 
 export const searchForYtMovie = title => {
   return fetch(
