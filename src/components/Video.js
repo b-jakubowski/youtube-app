@@ -19,7 +19,7 @@ const PlaceholderText = styled.p`
   text-align: center;
 `;
 
-const Video = ({ url, loading, playing }) => (
+const Video = ({ url, loading, playing, onReady }) => (
   <Container>
     {loading ? (
       <VideoContainer>
@@ -27,7 +27,7 @@ const Video = ({ url, loading, playing }) => (
       </VideoContainer>
     ) : url ? (
       <VideoContainer>
-        <ReactPlayer width="100%" height="100%" url={url} playing={playing} />
+        <ReactPlayer onReady={onReady} width="100%" height="100%" url={url} playing={playing} />
       </VideoContainer>
     ) : (
       <VideoContainer>
@@ -40,7 +40,8 @@ const Video = ({ url, loading, playing }) => (
 Video.propTypes = {
   url: PropTypes.string,
   loading: PropTypes.bool,
-  playing: PropTypes.bool
+  playing: PropTypes.bool,
+  onReady: PropTypes.func
 };
 
 export default Video;

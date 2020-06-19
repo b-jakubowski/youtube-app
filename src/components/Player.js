@@ -18,6 +18,7 @@ const Player = () => {
   const [searchValue, setSearchValue] = useState('');
   const [error, loading, videoDetails] = useFetchYtMovies(searchValue);
   const [videoPlay, setVideoPlay] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
 
   return (
     <Container>
@@ -30,11 +31,12 @@ const Player = () => {
             loading={loading}
             url={videoDetails.id && setVideoUrl(videoDetails.id)}
             playing={videoPlay}
+            onReady={() => setPlayerReady(true)}
           />
           <PlayPauseButton
             onClick={() => setVideoPlay(val => !val)}
-            id={videoDetails.id}
             play={videoPlay}
+            disabled={playerReady}
           />
           <VideoDetails
             title={videoDetails.title}

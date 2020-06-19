@@ -9,9 +9,9 @@ const Button = styled.button`
   margin-left: 1rem;
 `;
 
-const PlayPauseButton = ({ onClick, id, play }) => {
+const PlayPauseButton = ({ onClick, play, disabled }) => {
   return (
-    <Button onClick={onClick} disabled={id ? false : true}>
+    <Button onClick={onClick} disabled={disabled ? false : true}>
       <FontAwesomeIcon icon={play ? faPause : faPlay} />
     </Button>
   );
@@ -19,7 +19,7 @@ const PlayPauseButton = ({ onClick, id, play }) => {
 
 PlayPauseButton.propTypes = {
   onClick: PropTyes.func,
-  id: PropTyes.string,
+  disabled: PropTyes.bool,
   play: PropTyes.bool
 };
 
