@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import debounce from 'lodash.debounce';
 
 import Search from './Search';
 import Video from './Video';
 import VideoDetails from './VideoDetails';
-import { searchForYtMovie, setVideoUrl } from '../api/ytApi';
+import { setVideoUrl } from '../api/ytApi';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useFetchYtMovies from '../hooks/useFetchYtMovies';
 
 const Container = styled.div`
   padding: 1rem;
@@ -19,41 +20,9 @@ const Button = styled.button`
 `;
 
 const Player = () => {
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
   const [searchValue, setSearchValue] = useState('');
+  const [error, loading, videoDetails] = useFetchYtMovies(searchValue);
   const [videoPlay, setVideoPlay] = useState(false);
-  const [videoDetails, setVideoDetails] = useState({
-    title: '',
-    description: '',
-    channelName: '',
-    id: ''
-  });
-
-  useEffect(() => {
-    if (searchValue) {
-      fetchMovieAndSetUrl(searchValue);
-    }
-  }, [searchValue]);
-
-  const fetchMovieAndSetUrl = async title => {
-    try {
-      setLoading(true);
-      const res = await (await searchForYtMovie(title)).json();
-
-      if (res.items && res.items.length) {
-        const videoId = res.items[0].id.videoId;
-        const { title, description, channelTitle } = res.items[0].snippet;
-
-        setVideoDetails({ title, description, channelTitle, id: videoId });
-      }
-    } catch (e) {
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <Container>
