@@ -1,44 +1,46 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import ReactPlayer from 'react-player';
 
 const Container = styled.div`
-  height: 25rem;
+  display: flex;
+  height: 23rem;
   padding: 1rem;
-  background-color: green;
 `;
-
 const VideoContainer = styled.div`
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
   background-color: grey;
 `;
+const PlaceholderText = styled.p`
+  text-align: center;
+`;
 
-const Video = ({ url }) => {
-  useEffect(() => {}, [url]);
-
-  return (
-    <Container>
-      {url ? (
-        <VideoContainer>
-          <iframe
-            title="video"
-            width="100%"
-            height="100%"
-            src={url}
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
-        </VideoContainer>
-      ) : (
-        <VideoContainer>
-          <p>Search for video</p>
-        </VideoContainer>
-      )}
-    </Container>
-  );
-};
+const Video = ({ url, loading, playing }) => (
+  <Container>
+    {loading ? (
+      <VideoContainer>
+        <PlaceholderText>Loading...</PlaceholderText>
+      </VideoContainer>
+    ) : url ? (
+      <VideoContainer>
+        <ReactPlayer width="100%" height="100%" url={url} playing={playing} />
+      </VideoContainer>
+    ) : (
+      <VideoContainer>
+        <PlaceholderText>Search for video</PlaceholderText>
+      </VideoContainer>
+    )}
+  </Container>
+);
 
 Video.propTypes = {
-  url: PropTypes.string
+  url: PropTypes.string,
+  loading: PropTypes.bool,
+  playing: PropTypes.bool
 };
 
 export default Video;

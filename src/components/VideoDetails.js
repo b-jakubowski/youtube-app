@@ -8,14 +8,15 @@ const Title = styled.h3`
 
 const Subtitle = styled.p`
   padding: 0.5rem;
+  margin-left: 0.5rem;
 `;
 
 const VideoDetails = ({ title, description, channelTitle }) => {
   return (
     <div>
-      <Title>{title}</Title>
-      <Subtitle>{channelTitle}</Subtitle>
-      <Subtitle>{description}</Subtitle>
+      <Title>Title: {title}</Title>
+      <Subtitle>Channel: {channelTitle}</Subtitle>
+      <Subtitle>Description: {description}</Subtitle>
     </div>
   );
 };

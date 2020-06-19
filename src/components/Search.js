@@ -6,6 +6,7 @@ const Input = styled.input`
   background-color: white;
   border: 1px solid grey;
   padding: 0.3rem;
+  margin-left: 1rem;
 `;
 
 const Search = ({ setSearchValue }) => {
