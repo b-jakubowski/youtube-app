@@ -1,0 +1,7 @@
+const VIDEO = {
+  LOAD: 'VIDEO_LOAD',
+  LOAD_SUCCESS: 'VIDEO_LOAD_SUCCESS',
+  LOAD_FAIL: 'VIDEO_LOAD_FAIL'
+};
+
+export { VIDEO };

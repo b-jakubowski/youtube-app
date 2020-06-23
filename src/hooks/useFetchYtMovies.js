@@ -4,8 +4,7 @@ import { searchForYtMovie } from '../api/ytApi';
 const useFetchYtMovies = searchValue => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  console.log('search', searchValue);
-
+  const [noResults, setNoResults] = useState(false);
   const [videoDetails, setVideoDetails] = useState({
     title: '',
     description: '',
@@ -30,6 +29,8 @@ const useFetchYtMovies = searchValue => {
 
         setVideoDetails({ title, description, channelTitle, id: videoId });
       }
+
+      res.pageInfo.totalResults === 0 ? setNoResults(true) : setNoResults(false);
     } catch (e) {
       setError(e);
     } finally {
@@ -37,9 +38,7 @@ const useFetchYtMovies = searchValue => {
     }
   };
 
-  console.log([error, loading, videoDetails]);
-
-  return [error, loading, videoDetails];
+  return [error, loading, videoDetails, noResults];
 };
 
 export default useFetchYtMovies;

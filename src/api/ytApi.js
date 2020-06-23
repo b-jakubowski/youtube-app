@@ -10,3 +10,14 @@ export const searchForYtMovie = title => {
 };
 
 export const setVideoUrl = id => `https://www.youtube.com/embed/${id}?enablejsapi=1`;
+
+export const fetchVideo = async title => {
+  const response = await searchForYtMovie(title);
+  const data = await response.json();
+
+  if (response.status >= 400) {
+    throw new Error('error');
+  }
+
+  return data;
+};

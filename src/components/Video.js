@@ -19,11 +19,15 @@ const PlaceholderText = styled.p`
   text-align: center;
 `;
 
-const Video = ({ url, loading, playing, onReady }) => (
+const Video = ({ url, loading, playing, onReady, noResults }) => (
   <Container>
     {loading ? (
       <VideoContainer>
         <PlaceholderText>Loading...</PlaceholderText>
+      </VideoContainer>
+    ) : noResults ? (
+      <VideoContainer>
+        <PlaceholderText>No search results, sorry!</PlaceholderText>
       </VideoContainer>
     ) : url ? (
       <VideoContainer>
@@ -41,7 +45,8 @@ Video.propTypes = {
   url: PropTypes.string,
   loading: PropTypes.bool,
   playing: PropTypes.bool,
-  onReady: PropTypes.func
+  onReady: PropTypes.func,
+  noResults: PropTypes.bool
 };
 
 export default Video;

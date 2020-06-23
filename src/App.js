@@ -1,6 +1,11 @@
 import React from 'react';
-import Player from './components/Player';
 import styled from 'styled-components';
+import { Provider } from 'react-redux';
+
+import Player from './components/Player';
+import configureStore from './store';
+
+const store = configureStore();
 
 const Container = styled.div`
   display: flex;
@@ -16,11 +21,13 @@ const Content = styled.div`
 
 function App() {
   return (
-    <Container>
-      <Content>
-        <Player />
-      </Content>
-    </Container>
+    <Provider store={store}>
+      <Container>
+        <Content>
+          <Player />
+        </Content>
+      </Container>
+    </Provider>
   );
 }
 
